@@ -43,7 +43,7 @@ addEventListener("keyup", function (e) {
 // Reset the game when the player catches a monster
 var reset = function () {
 	hero.x = canvas.width / 2;
-	hero.y = canvas.height - 100;
+	hero.y = canvas.height - 50;
 
 	// Throw the monster somewhere on the screen randomly
 	monster.x = 32 + (Math.random() * (canvas.width - 64));
@@ -59,11 +59,19 @@ var update = function (modifier) {
 		//hero.y += hero.speed * modifier;
 	}
 	if (37 in keysDown) { // Player holding left
-		hero.x -= hero.speed * modifier;
+		if (hero.x > 10) {
+			hero.x -= hero.speed * modifier;
+		}
 	}
 	if (39 in keysDown) { // Player holding right
-		hero.x += hero.speed * modifier;
+		console.log('hero.x' + hero.x);
+		console.log('cavnas.width' + canvas.width);
+		if (hero.x < canvas.width - 45) {
+			hero.x += hero.speed * modifier;
+		}
+		
 	}
+
 
 	// Are they touching?
 	if (
